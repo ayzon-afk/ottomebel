@@ -1,0 +1,20 @@
+/* ===== Преимущества ===== */
+.benefits__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.benefit {
+  position: relative; padding: 34px 28px 30px; border-radius: var(--radius-lg); background: var(--white);
+  border: 1px solid var(--cream-200); overflow: hidden; isolation: isolate;
+  transition: transform var(--dur) var(--ease), border-color var(--dur), color var(--dur);
+}
+.benefit::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--green-700); transform: translateY(101%); transition: transform .6s var(--ease); }
+.benefit:hover { transform: translateY(-6px); border-color: var(--green-700); color: var(--cream-50); }
+.benefit:hover::before { transform: none; }
+.benefit__num { position: absolute; top: 22px; right: 26px; font-family: var(--font-serif); font-style: italic; color: var(--gold-600); font-size: 1.1rem; }
+.benefit__icon { width: 46px; height: 46px; color: var(--green-600); stroke-width: 1.4; margin-bottom: 28px; transition: color var(--dur); }
+.benefit:hover .benefit__icon { color: var(--gold-400); }
+.benefit h3 { font-family: var(--font-serif); font-size: var(--fs-h3); color: inherit; margin-bottom: 10px; }
+.benefit:not(:hover) h3 { color: var(--green-800); }
+.benefit p { font-size: .92rem; color: var(--ink-500); transition: color var(--dur); }
+.benefit:hover p { color: rgba(255,255,255,.75); }
+
+@media (max-width: 1024px) { .benefits__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .benefits__grid { grid-template-columns: 1fr; } }

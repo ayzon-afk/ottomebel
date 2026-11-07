@@ -1,0 +1,67 @@
+/* ===== Каталог ===== */
+.catalog { background: var(--cream-100); }
+.filters { display: flex; flex-wrap: wrap; gap: 10px; }
+.catalog__sub { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin: -28px 0 32px; }
+.catalog__count { color: var(--ink-500); font-size: .9rem; }
+.catalog__count b { color: var(--green-800); }
+
+.swatch { width: 36px; height: 36px; border-radius: 50%; padding: 3px; border: 1.5px solid transparent; transition: border-color var(--dur-fast), transform var(--dur-fast); }
+.swatch span { display: block; width: 100%; height: 100%; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+.swatch:hover { transform: scale(1.1); }
+.swatch.is-active { border-color: var(--green-600); }
+
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+
+.card {
+  position: relative; background: var(--white); border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow-sm); cursor: pointer;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), opacity var(--dur) var(--ease);
+  animation: cardIn .7s var(--ease) both; animation-delay: calc(var(--i) * 60ms);
+}
+@keyframes cardIn { from { opacity: 0; transform: translateY(26px) scale(.98); } }
+.card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.card__media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--cream-200); }
+.card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+.card:hover .card__media img { transform: scale(1.06); }
+.card__badge {
+  position: absolute; top: 14px; left: 14px; padding: 6px 12px; border-radius: 999px;
+  background: rgba(255,255,255,.92); backdrop-filter: blur(6px);
+  font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--green-700);
+}
+.card__badge--hot { background: var(--gold-500); color: var(--green-900); }
+.card__fav {
+  position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%;
+  display: grid; place-items: center; background: rgba(255,255,255,.92); color: var(--green-700);
+  transition: transform var(--dur-fast) var(--ease), background var(--dur-fast), color var(--dur-fast);
+}
+.card__fav svg { width: 19px; height: 19px; }
+.card__fav:hover { transform: scale(1.12); }
+.card__fav.is-on { background: var(--green-600); color: var(--white); }
+.card__fav.is-on svg { fill: currentColor; }
+.card__quick {
+  position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 12px; border-radius: 999px; text-align: center;
+  background: var(--green-800); color: var(--white); font-weight: 600; font-size: .88rem;
+  transform: translateY(140%); transition: transform var(--dur) var(--ease);
+}
+.card:hover .card__quick { transform: none; }
+.card__body { padding: 20px 22px 22px; }
+.card__meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: .78rem; color: var(--ink-500); text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+.card__dots { display: flex; gap: 4px; }
+.card__dots i { width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); }
+.card__title { font-family: var(--font-serif); font-size: 1.5rem; color: var(--green-800); margin-top: 6px; }
+.card__foot { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--cream-200); }
+.card__price { font-size: .88rem; color: var(--ink-500); }
+.card__price b { color: var(--green-700); font-size: 1rem; }
+.card__arrow { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--cream-200); display: grid; place-items: center; color: var(--green-700); transition: all var(--dur) var(--ease); }
+.card__arrow svg { width: 17px; height: 17px; }
+.card:hover .card__arrow { background: var(--gold-500); border-color: var(--gold-500); color: var(--green-900); transform: rotate(-45deg); }
+
+.grid__empty { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--ink-500); }
+
+@media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; gap: 20px; }
+  .catalog__sub { margin-top: -16px; }
+  .card__quick { display: none; }
+}
+@media (hover: none) { .card__quick { display: none; } }

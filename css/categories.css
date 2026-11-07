@@ -1,0 +1,41 @@
+/* ===== Категории (bento) ===== */
+.bento {
+  display: grid; gap: 18px;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: 300px 300px;
+}
+.bento__item {
+  position: relative; overflow: hidden; border-radius: var(--radius-lg);
+  background: var(--green-700); color: var(--white); isolation: isolate;
+}
+.bento__item--big { grid-row: span 2; }
+.bento__item:nth-child(4) { grid-column: span 2; }
+.bento__item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); z-index: -2; }
+.bento__item::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(11,36,28,0) 35%, rgba(11,36,28,.85) 100%); transition: opacity var(--dur); }
+.bento__item:hover img { transform: scale(1.07); }
+.bento__info { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(22px, 3vw, 34px); }
+.bento__info h3 { font-family: var(--font-serif); font-size: clamp(1.6rem, 2.6vw, 2.4rem); }
+.bento__item:not(.bento__item--big) .bento__info h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
+.bento__info p { margin-top: 8px; color: rgba(255,255,255,.8); font-size: .92rem; max-width: 420px; }
+.bento__tag { display: inline-block; margin-bottom: 12px; padding: 5px 12px; border-radius: 999px; background: var(--gold-500); color: var(--green-900); font-size: .75rem; font-weight: 700; letter-spacing: .04em; }
+.bento__more { display: inline-block; margin-top: 18px; color: var(--gold-400); font-weight: 600; font-size: .92rem; transition: transform var(--dur) var(--ease); }
+.bento__item:hover .bento__more { transform: translateX(6px); }
+
+.bento__item--text { background: radial-gradient(120% 140% at 100% 0%, var(--green-500) 0%, var(--green-700) 45%, var(--green-800) 100%); }
+.bento__item--text::after { display: none; }
+.bento__item--text .bento__info { top: 0; display: flex; flex-direction: column; justify-content: center; }
+.bento__icon { width: 44px; height: 44px; color: var(--gold-400); margin-bottom: 16px; stroke-width: 1.4; }
+.bento__item--text::before {
+  content: "OTTO"; position: absolute; right: -10px; bottom: -40px; z-index: -1;
+  font-family: var(--font-serif); font-size: 12rem; line-height: 1; color: rgba(255,255,255,.05); font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .bento { grid-template-columns: 1fr 1fr; grid-template-rows: 380px 260px 240px; }
+  .bento__item--big { grid-column: span 2; grid-row: auto; }
+  .bento__item:nth-child(4) { grid-column: span 2; }
+}
+@media (max-width: 560px) {
+  .bento { grid-template-columns: 1fr; grid-template-rows: 400px; grid-auto-rows: 250px; }
+  .bento__item--big, .bento__item:nth-child(4) { grid-column: auto; grid-row: auto; }
+}

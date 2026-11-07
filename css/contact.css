@@ -1,0 +1,48 @@
+/* ===== Контакты и форма ===== */
+.contact { position: relative; background: var(--green-800) url(../img/banner-2.webp) center / cover; color: var(--cream-50); isolation: isolate; }
+.contact::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, rgba(11,36,28,.97) 0%, rgba(11,36,28,.9) 50%, rgba(11,36,28,.72) 100%); }
+.contact__wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 6vw, 90px); align-items: center; }
+.contact__lead { margin-top: 18px; color: rgba(255,255,255,.75); max-width: 440px; }
+.contact__list { list-style: none; padding: 0; margin: 34px 0 0; display: grid; gap: 20px; }
+.contact__list li { display: grid; gap: 2px; }
+.contact__list span { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-400); font-weight: 600; }
+.contact__list a, .contact__list b { font-size: 1.15rem; font-weight: 500; color: var(--white); }
+.contact__list a:hover { color: var(--gold-400); }
+.socials { display: flex; gap: 12px; margin-top: 30px; }
+.social { width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.25); color: var(--white); transition: all var(--dur) var(--ease); }
+.social svg { width: 22px; height: 22px; fill: currentColor; stroke: none; }
+.social:hover { background: var(--gold-500); border-color: var(--gold-500); color: var(--green-900); transform: translateY(-4px); }
+
+.lead-form { position: relative; background: var(--cream-50); color: var(--ink-900); border-radius: var(--radius-lg); padding: clamp(26px, 3.4vw, 42px); box-shadow: var(--shadow-lg); overflow: hidden; }
+.lead-form__title { font-family: var(--font-serif); font-size: 1.9rem; color: var(--green-800); margin-bottom: 22px; }
+.field { display: grid; gap: 6px; margin-bottom: 16px; }
+.field label { font-size: .85rem; font-weight: 600; color: var(--ink-700); }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 14px 16px; border-radius: 12px; border: 1.5px solid var(--cream-200); background: var(--white);
+  font: inherit; color: var(--ink-900); transition: border-color var(--dur-fast), box-shadow var(--dur-fast); resize: vertical;
+}
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--green-600); box-shadow: 0 0 0 4px rgba(28,93,71,.12); }
+.field__err { display: none; color: #b3261e; font-size: .8rem; }
+.field.is-error input { border-color: #b3261e; }
+.field.is-error .field__err { display: block; }
+.lead-form__legal { margin-top: 12px; font-size: .75rem; color: var(--ink-500); text-align: center; }
+.lead-form .btn.is-loading { pointer-events: none; opacity: .8; }
+.lead-form .btn.is-loading::before { content: ""; width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(11,36,28,.3); border-top-color: var(--green-900); animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.lead-form__success {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  gap: 10px; padding: 36px; background: var(--cream-50); opacity: 0; visibility: hidden; transition: opacity var(--dur), visibility 0s var(--dur);
+}
+.lead-form.is-sent .lead-form__success { opacity: 1; visibility: visible; transition: opacity var(--dur); }
+.lead-form__success h3 { font-family: var(--font-serif); font-size: 2rem; color: var(--green-800); }
+.lead-form__success p { color: var(--ink-700); }
+.lead-form__success small { color: var(--ink-500); max-width: 320px; margin-bottom: 14px; }
+.check-anim { width: 84px; height: 84px; margin-bottom: 8px; }
+.check-anim circle { stroke: var(--green-600); stroke-width: 2.5; stroke-dasharray: 160; stroke-dashoffset: 160; }
+.check-anim path { stroke: var(--green-600); stroke-width: 3.5; stroke-dasharray: 50; stroke-dashoffset: 50; }
+.lead-form.is-sent .check-anim circle { animation: draw .7s var(--ease) .1s forwards; }
+.lead-form.is-sent .check-anim path { animation: draw .45s var(--ease) .7s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+@media (max-width: 900px) { .contact__wrap { grid-template-columns: 1fr; } }
